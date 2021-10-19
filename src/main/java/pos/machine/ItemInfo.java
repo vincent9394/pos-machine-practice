@@ -12,14 +12,17 @@ public class ItemInfo {
     }
 
     public String getBarcode() {
+
         return barcode;
     }
 
     public String getName() {
+
         return name;
     }
 
     public int getPrice() {
+
         return price;
     }
 }
