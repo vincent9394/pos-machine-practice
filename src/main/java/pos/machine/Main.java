@@ -11,7 +11,8 @@ public class Main {
     public static void main(String[] arg) {
 
             printItem();
-        System.out.println(countItemQuantity(barcodesItem.get(0).getBarcode()));
+        System.out.println(countItemQuantity(barcodesItem.get(0).getBarcode()));//4
+        System.out.println(countSubTotal(barcodes.get(0)));
 
     }
     public static void printItem(){
@@ -29,14 +30,30 @@ public class Main {
         }
 
     }
-    public static int countItemQuantity(String s){
+    public static int countItemQuantity(String barcode){
         int count = 0;
         for(int i=0;i<barcodes.size();i++){
-            if(s.equals(barcodes.get(i))){
+            if(barcode.equals(barcodes.get(i))){
                 count++;
             }
         }
         return count;
     }
 
+    public static int findBarcodeIndex(String barcode){
+        int index = 0;
+        for(int i=0;i<barcodesItem.size();i++){
+            if(barcode.equals(barcodesItem.get(i).getBarcode())){
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public static int countSubTotal(String barcode){
+        int count = countItemQuantity(barcode);
+        int index = findBarcodeIndex(barcode);
+        int subTotal = barcodesItem.get(index).getPrice()*count;
+        return subTotal;
+    }
 }
