@@ -1,8 +1,6 @@
 package pos.machine;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static List<String> barcodes = ItemDataLoader.loadBarcodes();
@@ -13,6 +11,8 @@ public class Main {
             printItem();
         System.out.println(countItemQuantity(barcodesItem.get(0).getBarcode()));//4
         System.out.println(countSubTotal(barcodes.get(0)));
+        findBarcodeOnce();
+        System.out.println(countTotal());
 
     }
     public static void printItem(){
@@ -55,5 +55,32 @@ public class Main {
         int index = findBarcodeIndex(barcode);
         int subTotal = barcodesItem.get(index).getPrice()*count;
         return subTotal;
+    }
+
+    public static int countTotal(){
+//        List<String> existBarcodes
+        List<String> onlyBarcodes =new ArrayList<>();
+        onlyBarcodes = findBarcodeOnce();
+        int sumTotal = 0;
+        for (int i=0;i<onlyBarcodes.size();i++){
+            sumTotal += countSubTotal(onlyBarcodes.get(i)) ;
+        }
+        return sumTotal;
+    }
+
+    public  static List<String> findBarcodeOnce(){
+        List<String> sortedBarcodes = ItemDataLoader.loadBarcodes();
+        Collections.sort(sortedBarcodes);
+        List<String> onlyBarcodes =new ArrayList<>();
+        onlyBarcodes.add(sortedBarcodes.get(0));
+        for (int i = 0; i < barcodes.size()-1; i++) {
+            if(!sortedBarcodes.get(i).equals(sortedBarcodes.get(i+1))){
+                onlyBarcodes.add(sortedBarcodes.get(i+1));
+
+            }
+
+        }
+        System.out.println(onlyBarcodes);
+        return onlyBarcodes;
     }
 }
