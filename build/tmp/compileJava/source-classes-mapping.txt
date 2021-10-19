@@ -1,3 +1,5 @@
+pos/machine/Main.java
+ pos.machine.Main
 pos/machine/ItemDataLoader.java
  pos.machine.ItemDataLoader
 pos/machine/PosMachine.java

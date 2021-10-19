@@ -12,7 +12,6 @@ public class ItemInfo {
     }
 
     public String getBarcode() {
-
         return barcode;
     }
 
