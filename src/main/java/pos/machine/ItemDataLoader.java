@@ -14,6 +14,11 @@ public class ItemDataLoader {
         itemInfos.add(item2Info);
         itemInfos.add(item3Info);
 
+        List<ReceiptItem> receiptItems = new ArrayList<>();
+        ReceiptItem receiptItem1 = new ReceiptItem();
+        receiptItems.add(receiptItem1);
+
+
         return itemInfos;
     }
 
